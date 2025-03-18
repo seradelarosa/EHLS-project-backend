@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { starterMissions, starterEmployees } = require('../seedData');
 
 const User = require('../models/user');
 
 const saltRounds = 12;
+
+
 
 router.post('/sign-up', async (req, res) => {
   try {
@@ -17,13 +20,16 @@ router.post('/sign-up', async (req, res) => {
     
     const user = await User.create({
       username: req.body.username,
-      hashedPassword: bcrypt.hashSync(req.body.password, saltRounds)
+      hashedPassword: bcrypt.hashSync(req.body.password, saltRounds),
+      missions: starterMissions,
+      employees: starterEmployees,
     });
 
     const payload = { username: user.username, _id: user._id };
 
     const token = jwt.sign({ payload }, process.env.JWT_SECRET);
 
+    
     res.status(201).json({ token });
   } catch (err) {
     res.status(500).json({ err: err.message });
