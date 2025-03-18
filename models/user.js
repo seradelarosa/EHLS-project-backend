@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const missionSchema = new mongoose.Schema ({
   title: {
     type: String,
-    required: true
+    // required: true
   },
   description: {
     type: String,
-    required: true
+    // required: true
   },
   isCompleted: {
     type: Boolean,
@@ -17,7 +17,7 @@ const missionSchema = new mongoose.Schema ({
     type: [String]
   },
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }
 })
@@ -25,25 +25,25 @@ const missionSchema = new mongoose.Schema ({
 const employeeSchema = new mongoose.Schema ({
   fullname: {
     type: String,
-    required: true,
+    // required: true,
   },
   age: {
     type: Number,
-    required: true,
+    // required: true,
   },
   role: {
     type: String,
-    required: true,
+    // required: true,
   },
   permissions: {
     type: [String],
-    required: true,
+    // required: true,
   },
   files: {
     type: [String],
   },
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }
 })
@@ -74,6 +74,6 @@ userSchema.set('toJSON', {
   }
 });
 
-const User = model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

@@ -7,7 +7,7 @@ const verifyToken = require('../middleware/verify-token');
 
 router.get('/', verifyToken, async (req, res) => {
   try {
-    const users = await User.find({}, "username");
+    const users = await User.find({});
 
     res.json(users);
   } catch (err) {
@@ -32,5 +32,20 @@ router.get('/:userId', verifyToken, async (req, res) => {
     res.status(500).json({ err: err.message });
   }
 });
+
+router.get('/:userId/employees', verifyToken, async (req, res) => {
+  try {
+    if (req.user._id !== req.params.userId){
+      return res.status(403).json({ err: "Unauthorized"});
+    }
+
+    const user = await User.findById(req.params.userId);
+    const employees = user.employees;
+
+    res.status(200).json({employees});
+  } catch (err) {
+    console.log(err);
+  }
+})
 
 module.exports = router;
