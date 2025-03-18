@@ -14,7 +14,7 @@ const missionSchema = new mongoose.Schema ({
     default: false
   },
   report: {
-    type: String
+    type: [String]
   },
   user: {
     type: Schema.Types.ObjectId,
@@ -28,7 +28,7 @@ const employeeSchema = new mongoose.Schema ({
     required: true,
   },
   age: {
-    type: String,
+    type: Number,
     required: true,
   },
   role: {
