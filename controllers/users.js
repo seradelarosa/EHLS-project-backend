@@ -48,7 +48,7 @@ router.get('/:userId/employees', verifyToken, async (req, res) => {
 
     const employees = user.employees;
 
-    res.status(200).json({ employees });
+    res.status(200).json(employees);
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
@@ -116,7 +116,7 @@ router.get('/:userId/employees/:employeeId', verifyToken, async (req, res) => {
       return res.status(404).json({ err: "Employee not found" });
     }
 
-    res.status(200).json({ employee });
+    res.status(200).json(employee);
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
@@ -207,7 +207,7 @@ router.get('/:userId/missions', verifyToken, async (req, res) => {
 
     const missions = user.missions;
 
-    res.status(200).json({ missions });
+    res.status(200).json(missions);
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
@@ -231,7 +231,7 @@ router.get('/:userId/missions/:missionId', verifyToken, async (req, res) => {
       return res.status(404).json({ err: "Mission not found" });
     }
 
-    res.status(200).json({ mission });
+    res.status(200).json(mission);
   } catch (err) {
     res.status(500).json({ err: err.message });
   };
