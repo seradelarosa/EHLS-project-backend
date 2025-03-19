@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 
 const User = require('../models/user');
 
@@ -161,10 +160,40 @@ router.put('/:userId/employees/:employeeId', verifyToken, async (req, res) => {
   }
 });
 
+	
+// DELETE	users	200	/users/:userId/employees/:employeeId	delete an employee	
+// TODO: deleting a file or permission from an employee...
+router.delete('/:userId/employees/:employeeId', verifyToken, async (req, res) => {
+  try {
+    if (req.user._id !== req.params.userId) {
+      return res.status(403).json({ err: "Unauthorized" });
+    }
+
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ err: 'User not found.' });
+    }
+
+    const employee = user.employees.id(req.params.employeeId);
+    if (!employee) {
+      return res.status(404).json({ err: 'Employee not found.' });
+    }
+
+    // can't use remove() method on subdocuments
+    // need to use pull() to remove an element from an array
+    // pull the employee out of the array
+    user.employees.pull({ _id: req.params.employeeId });
+
+    // save the updated user after an employee was deleted 
+    await user.save();
+
+    res.status(200).json({ message: "Employee deleted successfully" });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 
-
-// DELETE	users	200	/users/:userId/employees:employeeId	delete an employee	
 // GET	users	200	/users/:userId/missions/	get index of missions	
 // GET	users	200	/users/:userId/missions/:missionId	get one mission's details	
 // PUT	users	200	/users/:userId/missions/:missionId	edit an mission
