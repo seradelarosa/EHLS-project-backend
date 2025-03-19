@@ -214,15 +214,32 @@ router.get('/:userId/missions', verifyToken, async (req, res) => {
 
 });
 
-
-
-
-
-
-
-
 // GET	users	200	/users/:userId/missions/:missionId	get one mission's details	
+router.get('/:userId/missions/:missionId', verifyToken, async (req, res) => {
+  try {
+    if (req.user._id !== req.params.userId) {
+      return res.status(403).json({ err: "Unauthorized" });
+    }
+
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ err: "User not found" });
+    }
+
+    const mission = user.missions.id(req.params.missionId);
+    if (!mission) {
+      return res.status(404).json({ err: "Mission not found" });
+    }
+
+    res.status(200).json({ mission });
+  } catch (err) {
+    res.status(500).json({ err: err.message });
+  };
+});
+
 // PUT	users	200	/users/:userId/missions/:missionId	edit an mission
+
+
 
 
 module.exports = router;
