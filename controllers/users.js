@@ -123,7 +123,47 @@ router.get('/:userId/employees/:employeeId', verifyToken, async (req, res) => {
   }
 });
 
-// PUT	users	200	/users/:userId/employees:employeeId	edit an employee	
+// PUT	users	200	/users/:userId/employees:employeeId	edit an employee
+router.put('/:userId/employees/:employeeId', verifyToken, async (req, res) => {
+  try {
+    if (req.user._id !== req.params.userId) {
+      return res.status(403).json({ err: "Unauthorized" });
+    }
+
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ err: "User not found" });
+    }
+
+    const employee = user.employees.id(req.params.employeeId);
+    if (!employee) {
+      return res.status(404).json({ err: "Employee not found" });
+    }
+
+    // destructure req.body into these variables
+    const { fullname, age, role, permissions = [], files = [] } = req.body;
+
+    // conditionally update the employee fields that are provided
+    // IF fullname is provided, update the employee's fullname property with the new value, etc.
+    if (fullname) employee.fullname = fullname;
+    if (age) employee.age = age;
+    if (role) employee.role = role;
+    if (permissions) employee.permissions = permissions;
+    if (files) employee.files = files;
+
+    // save the updated user document with the updated employee
+    await user.save();
+
+    // res with the updated employee
+    res.status(200).json({ employee, message: "Employee updated successfully" });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
+
+
 // DELETE	users	200	/users/:userId/employees:employeeId	delete an employee	
 // GET	users	200	/users/:userId/missions/	get index of missions	
 // GET	users	200	/users/:userId/missions/:missionId	get one mission's details	
