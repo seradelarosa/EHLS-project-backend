@@ -20,7 +20,8 @@ const missionSchema = new mongoose.Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }
-})
+// Ensure _id is generated for mission subdocuments
+}, { _id: true });
 
 const employeeSchema = new mongoose.Schema ({
   fullname: {
@@ -46,7 +47,8 @@ const employeeSchema = new mongoose.Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }
-})
+  // Ensure _id is generated for employee subdocuments
+}, { _id: true });
 
 const userSchema = new mongoose.Schema({
   username: {
