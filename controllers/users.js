@@ -50,7 +50,7 @@ router.get('/:userId/employees', verifyToken, async (req, res) => {
 
     res.status(200).json({ employees });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ err: err.message });
   }
 })
 
@@ -93,7 +93,7 @@ router.post('/:userId/employees', verifyToken, async (req, res) => {
     res.status(201).json({ employee: newEmployee, message: "Employee added successfully" });
 
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ err: err.message });
   }
 });
 
@@ -118,7 +118,7 @@ router.get('/:userId/employees/:employeeId', verifyToken, async (req, res) => {
 
     res.status(200).json({ employee });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ err: err.message });
   }
 });
 
@@ -156,7 +156,7 @@ router.put('/:userId/employees/:employeeId', verifyToken, async (req, res) => {
     // res with the updated employee
     res.status(200).json({ employee, message: "Employee updated successfully" });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ err: err.message });
   }
 });
 
@@ -189,12 +189,38 @@ router.delete('/:userId/employees/:employeeId', verifyToken, async (req, res) =>
 
     res.status(200).json({ message: "Employee deleted successfully" });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ err: err.message });
   }
 });
 
-
 // GET	users	200	/users/:userId/missions/	get index of missions	
+router.get('/:userId/missions', verifyToken, async (req, res) => {
+  try {
+    if (req.user._id !== req.params.userId) {
+      return res.status(403).json({ err: "Unauthorized" });
+    }
+
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ err: 'User not found.' });
+    }
+
+    const missions = user.missions;
+
+    res.status(200).json({ missions });
+  } catch (err) {
+    res.status(500).json({ err: err.message });
+  }
+
+});
+
+
+
+
+
+
+
+
 // GET	users	200	/users/:userId/missions/:missionId	get one mission's details	
 // PUT	users	200	/users/:userId/missions/:missionId	edit an mission
 
