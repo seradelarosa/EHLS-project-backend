@@ -105,3 +105,5 @@ const starterMissions = [
       files: ['drone-retrieval-plan.docx', 'mars-colony-security-log.json'],
     },
   ];
+
+  module.exports = { starterMissions, starterEmployees };
