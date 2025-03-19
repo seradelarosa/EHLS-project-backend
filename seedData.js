@@ -28,6 +28,6 @@ const starterEmployees = [
         permissions: [],
         files: [],
     },
-]
+];
 
 module.exports = { starterMissions, starterEmployees };

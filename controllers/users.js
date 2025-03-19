@@ -238,7 +238,35 @@ router.get('/:userId/missions/:missionId', verifyToken, async (req, res) => {
 });
 
 // PUT	users	200	/users/:userId/missions/:missionId	edit an mission
+router.put('/:userId/missions/:missionId', verifyToken, async (req, res) => {
+  try {
+    if (req.user._id !== req.params.userId) {
+      return res.status(403).json({ err: "Unauthorized" });
+    }
 
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ err: "User not found" });
+    }
+
+    const mission = user.missions.id(req.params.missionId);
+    if (!mission) {
+      return res.status(404).json({ err: "Mission not found" });
+    }
+
+    const { isCompleted, report } = req.body;
+   
+    // TODO: ensure the user can only choose a boolean value... front end?
+    if (isCompleted) mission.isCompleted = isCompleted;
+    if (report) mission.report = report;
+
+    await user.save();
+
+    res.status(200).json({ mission, message: "Mission updated successfully" });
+  } catch (err) {
+    res.status(500).json({ err: err.message });
+  }
+});
 
 
 
