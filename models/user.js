@@ -3,11 +3,9 @@ const mongoose = require('mongoose');
 const missionSchema = new mongoose.Schema ({
   title: {
     type: String,
-    // required: true
   },
   description: {
     type: String,
-    // required: true
   },
   isCompleted: {
     type: Boolean,
@@ -20,24 +18,21 @@ const missionSchema = new mongoose.Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }
-})
+// Ensure _id is generated for mission subdocuments
+}, { _id: true });
 
 const employeeSchema = new mongoose.Schema ({
   fullname: {
     type: String,
-    // required: true,
   },
   age: {
     type: Number,
-    // required: true,
   },
   role: {
     type: String,
-    // required: true,
   },
   permissions: {
     type: [String],
-    // required: true,
   },
   files: {
     type: [String],
@@ -46,7 +41,8 @@ const employeeSchema = new mongoose.Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }
-})
+  // Ensure _id is generated for employee subdocuments
+}, { _id: true });
 
 const userSchema = new mongoose.Schema({
   username: {
