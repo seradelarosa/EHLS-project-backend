@@ -12,7 +12,7 @@ const missionSchema = new mongoose.Schema ({
     default: false
   },
   report: {
-    type: [String]
+    type: String,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
