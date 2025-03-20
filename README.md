@@ -44,10 +44,17 @@ MVP:
 
 Routes:
 
-HTTP Method	    Controller	    Response	URI	                    Use Case
-POST	        create	        200	        /hoots	                Create a hoot
-GET	            index	        200	        /hoots	                List hoots
-GET	            show	        200	        /hoots/:hootId	        Get a single hoot
-PUT	            update	        200	        /hoots/:hootId	        Update a hoot
-DELETE	        deleteHoot	    200	        /hoots/:hootId	        Delete a hoot
-POST	        createComment	200	        /hoots/:hootId/comments	Create a comment
+| HTTP Method              | controller | Response | URI | Use Case |
+| :----------------:       | :------:    | :----:  | :---- | :---- |
+| POST        |   auth   | 201 |  /auth/sign-up |  register and create a new user  |
+| POST        |   auth   | 200 |  /auth/sign-in |  log in  |
+| GET | users | 200 | /users | get all users |
+| GET | users | 200 | /users/:userId | get a user's details |
+| GET | users | 200 | /users/:userId/employees | get index of employees |
+| POST | users | 201 | /users/:userId/employees | create new employee |
+| GET | users | 200 | /users/:userId/employees/:employeeId | get one employee's details |
+| PUT | users | 200 | /users/:userId/employees/:employeeId | edit an employee |
+| DELETE | users | 200 | /users/:userId/employees/:employeeId | delete an employee |
+| GET | users | 200 | /users/:userId/missions/ | get index of missions |
+| GET | users | 200 | /users/:userId/missions/:missionId | get one mission's details |
+| PUT | users | 200 | /users/:userId/missions/:missionId | edit an mission |
