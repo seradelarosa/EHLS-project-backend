@@ -12,8 +12,8 @@ const starterMissions = [
     report: '',
   },
   {
-    title: 'Log Purge',
-    description: "A recent incident report contains sensitive information that must be erased before it spreads. Locate the colony-incident-log.json in an employee's file and remove it.",
+    title: 'Promotion System Update',
+    description: "A recent personnel change requires immediate database updates. Zane Ortega has been promoted from Space Habitat Maintenance to Space Habitat Manager. Update their role accordingly and grant them the 'manage-files' permission before the next system audit.",
     isCompleted: false,
     report: '',
   },
@@ -105,7 +105,7 @@ const starterEmployees = [
   {
     fullname: 'Zane Ortega',
     age: 40,
-    role: 'Space Habitat Manager',
+    role: 'Space Habitat Maintenance',
     permissions: ['view-tasks', 'assign-tasks'],
     files: ['habitat-evacuation-plan.pdf', 'safety-protocols.txt'],
   },
