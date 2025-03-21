@@ -6,8 +6,8 @@ const starterMissions = [
     report: '',
   },
   {
-    title: 'Log Purge',
-    description: "A recent incident report contains sensitive information that must be erased before it spreads. Locate the colony-incident-log.json in an employee's file and remove it.",
+    title: 'Imposter Removal',
+    description: "An imposter has infiltrated our ranks, posing as one of our trusted employees. They have gained unauthorized access to confidential files and documents. Identify and remove the imposter from the system.",
     isCompleted: false,
     report: '',
   },
