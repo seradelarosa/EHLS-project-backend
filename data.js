@@ -82,11 +82,11 @@ const starterEmployees = [
     files: ['black-hole-measurements.csv', 'space-time-distortion-analysis.docx'],
   },
   {
-    fullname: 'Isla North',
-    age: 26,
-    role: 'Galactic Communications Specialist',
-    permissions: ['view-tasks', 'edit-records'],
-    files: ['comm-link-schematic.pdf', 'message-encryption-guide.txt'],
+    fullname: "Xalex'Thira-Zar'Nex",
+    age: 112,
+    role: 'Xenobiologist',
+    permissions: ['view-tasks', 'edit-records', 'manage-files', 'assign-tasks'],
+    files: ['alien-signaling-patterns.docx', 'classified-species-identification.pdf', 'anomalous-behavior-report.txt'],
   },
   {
     fullname: 'Leo Winters',
