@@ -18,14 +18,14 @@ const starterMissions = [
     report: '',
   },
   {
-    title: 'Log Purge',
-    description: "A recent incident report contains sensitive information that must be erased before it spreads. Locate the colony-incident-log.json in an employee's file and remove it.",
+    title: 'New Aquisition',
+    description: "A new recruit has joined our ranks. Ensure their seamless integration by adding them to the system with the following details: Name: Ariella Voss, age: 29, role: Astrobiologist",
     isCompleted: false,
     report: '',
   },
   {
-    title: 'Log Purge',
-    description: "A recent incident report contains sensitive information that must be erased before it spreads. Locate the colony-incident-log.json in an employee's file and remove it.",
+    title: 'Corrupt File Resync',
+    description: "A key file on a manager's computer has been corrupted. Submit the file name in a report so it can be resynced with the database and restored.",
     isCompleted: false,
     report: '',
   }
@@ -133,9 +133,9 @@ const starterEmployees = [
   {
     fullname: 'Vera Stone',
     age: 31,
-    role: 'Astrobiology Specialist',
+    role: 'Operational Efficiency Manager',
     permissions: ['view-tasks', 'manage-files'],
-    files: ['lifeform-analysis-report.pdf', 'environmental-impact-study.docx'],
+    files: ['key-file.pdf', 'environmental-impact-study.docx'],
   },
   {
     fullname: 'Kellen Brooks',
