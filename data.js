@@ -31,7 +31,7 @@ const starterMissions = [
   },
   {
     title: 'Remove Virus Infiltration',
-    description: "A virus has been detected in the system. Locate a remove this file immediately to ensure security and prevent further system corruption.",
+    description: "A virus has been detected in the system. Locate and remove this file immediately to ensure security and prevent further system corruption.",
     isCompleted: false,
     report: '',
   }
